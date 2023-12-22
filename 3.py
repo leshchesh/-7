@@ -1,17 +1,12 @@
-import random
-students = ['Алексей', 'Мария', 'Иван', 'Екатерина', 'Андрей']
-
-results = {}
-for student in students:
-    results[student] = [random.randint(0, 100), random.randint(0, 100), random.randint(0, 100)]
-
-average_scores = {}
-for student, scores in results.items():
-    average_score = sum(scores) / len(scores)
-    average_scores[student] = average_score
-
-sorted_students = sorted(average_scores, key=average_scores.get, reverse=True)
-
-print(results)
-for student in sorted_students:
-    print(f"{student}: {average_scores[student]}")
+def count_digits(number, count=0, even_count=0):
+    if number == 0:
+        return count, even_count
+    else:
+        digit = number % 10
+        if digit % 2 == 0:
+            even_count += 1
+        return count_digits(number // 10, count+1, even_count)
+number = int(input("Введите число:"))
+digit_count, even_digit_count = count_digits(number)
+print("Количество цифр:", digit_count)
+print("Количество чётных цифр:", even_digit_count)
